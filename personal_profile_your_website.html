@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Personal Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #e8f5e9;
+            color: #2e7d32;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #388e3c;
+            color: white;
+            padding: 15px;
+        }
+        section {
+            max-width: 900px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        input[type="file"] {
+            margin: 10px auto;
+        }
+        h2 {
+            color: #1b5e20;
+        }
+        .contact {
+            text-align: left;
+        }
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>thrivikram story</h1>
+    </header>
+
+    <section>
+        <h2>About Me</h2>
+        <img id="profile-pic" src="" alt="Profile Picture">
+        <br>
+        <input type="file" id="upload" accept="image/*">
+        <p id="about-text">Hello! I'm thrivikram. Welcome to my personal page!</p>
+    </section>
+
+    <section>
+        <h2>My Activities</h2>
+        <p id="activities">• Learning web development<br>• Exploring new technologies<br>• Writing blogs</p>
+    </section>
+
+    <section>
+        <h2>My Goals</h2>
+        <p id="goals">• Become a full-stack developer<br>• Build innovative projects<br>• Help others learn</p>
+    </section>
+
+    <section>
+        <h2>Contact Details</h2>
+        <div class="contact">
+            <p><strong>Email:</strong> ltrivikramkanna.com</p>
+            <p><strong>Phone:</strong> +91 7702473159</p>
+            <p><strong>Address:</strong> avanigadda,krishna,andhra pradesh,indian</p>
+        </div>
+    </section>
+
+    <script>
+        const upload = document.getElementById('upload');
+        const profilePic = document.getElementById('profile-pic');
+
+        upload.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profilePic.src = e.target.result;
+                    localStorage.setItem('profileImage', e.target.result);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Load saved image on refresh
+        window.onload = function() {
+            const savedImage = localStorage.getItem('profileImage');
+            if (savedImage) {
+                profilePic.src = savedImage;
+            }
+        }
+    </script>
+</body>
+</html>
